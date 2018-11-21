@@ -67,3 +67,31 @@ select (?x AS ?County) (COUNT(?a) AS ?TotalNumberOfStations) where {
 ?x ns0:hasStations ?a.
 }
 GROUP BY ?x LIMIT 10
+
+
+//Station with maximum number of crimes
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX ns0: <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+select (?x  AS ?Station) (xsd:int(?b) + xsd:int(?c) + xsd:int(?d) + xsd:int(?e) + xsd:int(?f) + xsd:int(?g) + xsd:int(?h) + xsd:int(?i) + xsd:int(?j) + xsd:int(?k) + xsd:int(?l) + xsd:int(?m)AS ?TotalCrimes) where {?x a ns0:Station.?x ns0:hasBurglary ?b. 
+?x ns0:hasDangerous ?c.?x ns0:hasDrug ?d.?x ns0:hasFraud ?e.?x ns0:hasGovernment ?f.?x ns0:hasKidnapping ?g.?x ns0:hasMurder ?h.?x ns0:hasProperty ?i.?x ns0:hasPublic ?j.?x ns0:hasRobbery ?k.?x ns0:hasTheft ?l.?x ns0:hasWepons ?m}ORDER BY DESC(xsd:integer(?TotalCrimes)) LIMIT 1
+
+
+
+//County with number of stations
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX ns0: <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+select (?y AS ?County) (COUNT(?b) AS ?StationCount) where {?y a ns0:County.
+?y ns0:hasStations ?b} GROUP BY ?y
+
+
+//Stations per Division
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX ns0: <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+select (?y AS ?Division) (COUNT(?b) AS ?StationPerDivision) where {?y a ns0:Division.
+?y ns0:hasStations ?b} GROUP BY ?y
