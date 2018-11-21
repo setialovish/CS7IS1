@@ -67,3 +67,108 @@ select (?x AS ?County) (COUNT(?a) AS ?TotalNumberOfStations) where {
 ?x ns0:hasStations ?a.
 }
 GROUP BY ?x LIMIT 10
+
+
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX ns0: <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+select (?x  AS ?Station) (xsd:int(?b) + xsd:int(?c) + xsd:int(?d) + xsd:int(?e) + xsd:int(?f) + xsd:int(?g) + xsd:int(?h) + xsd:int(?i) + xsd:int(?j) + xsd:int(?k) + xsd:int(?l) + xsd:int(?m)AS ?TotalCrimes) where {?x a ns0:Station.?x ns0:hasBurglary ?b. 
+?x ns0:hasDangerous ?c.?x ns0:hasDrug ?d.?x ns0:hasFraud ?e.?x ns0:hasGovernment ?f.?x ns0:hasKidnapping ?g.?x ns0:hasMurder ?h.?x ns0:hasProperty ?i.?x ns0:hasPublic ?j.?x ns0:hasRobbery ?k.?x ns0:hasTheft ?l.?x ns0:hasWepons ?m}ORDER BY DESC(xsd:integer(?TotalCrimes)) LIMIT 1
+------------------------------------------------------------------------------
+| Station                                                      | TotalCrimes |
+==============================================================================
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Store_Street\"> | 12114       |
+------------------------------------------------------------------------------
+
+
+
+
+
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX ns0: <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+select (?y AS ?County) (COUNT(?b) AS ?StationCount) where {?y a ns0:County.
+?y ns0:hasStations ?b} GROUP BY ?y
+------------------------------------------------------------------------
+| County                                                | StationCount |
+========================================================================
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#CORK>      | 71           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#WEXFORD>   | 21           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#CLARE>     | 18           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#MAYO>      | 29           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#WESTMEATH> | 13           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#TIPPERARY> | 36           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#OFFALY>    | 13           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#LONGFORD>  | 8            |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#DUBLIN>    | 41           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#KILKENNY>  | 17           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#KILDARE>   | 15           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#MEATH>     | 16           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#LAOIS>     | 12           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#WICKLOW>   | 17           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#KERRY>     | 26           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#CAVAN>     | 17           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#WATERFORD> | 19           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#ROSCOMMON> | 14           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#LOUTH>     | 13           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#GALWAY>    | 46           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#MONAGHAN>  | 8            |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#LEITRIM>   | 7            |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#CARLOW>    | 9            |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#DONEGAL>   | 37           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#SLIGO>     | 11           |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#LIMERICK>  | 28           |
+------------------------------------------------------------------------
+
+
+
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX ns0: <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+select (?y AS ?Division) (COUNT(?b) AS ?StationPerDivision) where {?y a ns0:Division.
+?y ns0:hasStations ?b} GROUP BY ?y
+------------------------------------------------------------------------------------------------------
+| Division                                                                      | StationPerDivision |
+======================================================================================================
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"D.M.R._South_Central_Division\"> | 5                  |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Cork_North_Division\">           | 24                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Waterford_Division\">            | 19                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Wicklow_Division\">              | 17                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Kildare_Division\">              | 15                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Westmeath\">                     | 1                  |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"D.M.R._Western_Division\">       | 8                  |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Tipperary_Division\">            | 37                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"D.M.R._Southern_Division\">      | 7                  |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Cork_West_Division\">            | 33                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Donegal_Division\">              | 37                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Roscommon/Longford_Division\">   | 22                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Laois/Offaly_Division\">         | 24                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Louth_Division\">                | 13                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Kerry_Division\">                | 26                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"D.M.R._North_Central_Division\"> | 4                  |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Limerick_Division\">             | 29                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Wexford_Division\">              | 22                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Meath_Division\">                | 16                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Clare_Division\">                | 17                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Cavan/Monaghan_Division\">       | 25                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Kilkenny/Carlow_Division\">      | 25                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Cork_City_Division\">            | 14                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Westmeath_Division\">            | 12                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"D.M.R._Northern_Division\">      | 13                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Sligo/Leitrim_Division\">        | 18                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Mayo_Division\">                 | 29                 |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"D.M.R._Eastern_Division\">       | 4                  |
+| <http://lab.Jena.Kdeg.ie/CrimeOntology.owl#\"Galway_Division\">               | 46                 |
+------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
